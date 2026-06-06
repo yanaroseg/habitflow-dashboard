@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         habitsListContainer.innerHTML = "";
 
         if (disciplines.length === 0) {
-            habitsListContainer.innerHTML = `<div class="caption-lbl" style="text-align:center; padding: 20px 0;">Workspace clear. Add a discipline to initiate tracking vectors.</div>`;
+            habitsListContainer.innerHTML = `<div class="caption-lbl" style="text-align:center; padding: 20px 0; color: var(--text-secondary); font-size: 13px;">Workspace clear. Add a discipline to initiate tracking.</div>`;
             calculateMetrics();
             return;
         }
@@ -67,14 +67,13 @@ document.addEventListener("DOMContentLoaded", () => {
             habitCard.className = `habit-item ${item.completed ? 'is-done' : ''}`;
             habitCard.setAttribute("data-id", item.id);
 
+            // Clean layout generation with pure text action flags instead of emojis/icons
             habitCard.innerHTML = `
                 <div class="habit-left">
-                    <div class="check-trigger">
-                        <i class="fas fa-check"></i>
-                    </div>
+                    <div class="check-trigger"></div>
                     <span class="habit-title">${item.title}</span>
                 </div>
-                <button class="delete-habit-btn"><i class="far fa-trash-alt"></i></button>
+                <button class="delete-habit-btn">Remove</button>
             `;
 
             // Event Listener: Checkbox Trigger Action Toggle
