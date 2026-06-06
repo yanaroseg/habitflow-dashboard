@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HabitFlow // Advanced Productivity Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="dashboard-wrapper">
+        
+        <aside class="sidebar">
+            <div class="sidebar-brand">HF<b>.</b></div>
+            <nav class="sidebar-menu">
+                <a href="#" class="sb-link active"><i class="fas fa-th-large"></i></a>
+                <a href="#" class="sb-link"><i class="fas fa-chart-bar"></i></a>
+                <a href="#" class="sb-link"><i class="fas fa-cog"></i></a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            
+            <header class="content-header">
+                <div class="header-titles">
+                    <h1>Control Your Day</h1>
+                    <p>Track your daily disciplines and monitor consistency metrics in real-time.</p>
+                </div>
+                <div class="date-badge" id="current-date">Saturday, June 6</div>
+            </header>
+
+            <div class="dashboard-grid">
+                
+                <div class="tracker-column">
+                    
+                    <form id="habit-form" class="input-card">
+                        <input type="text" id="habit-input" placeholder="Create a new daily discipline..." required autocomplete="off">
+                        <button type="submit" class="add-btn"><i class="fas fa-plus"></i> Add</button>
+                    </form>
+
+                    <div class="habits-holder">
+                        <h3 class="container-subtitle">Active Disciplines</h3>
+                        <div id="habits-list" class="habits-list">
+                            </div>
+                    </div>
+                </div>
+
+                <div class="analytics-column">
+                    <div class="analytics-sticky-card">
+                        <h3 class="card-title">Performance Metrics</h3>
+                        
+                        <div class="progress-radial-box">
+                            <div class="radial-outer">
+                                <div class="radial-inner">
+                                    <span id="completion-percentage">0%</span>
+                                </div>
+                            </div>
+                            <p class="radial-label">Total Completion Value</p>
+                        </div>
+
+                        <div class="metrics-row">
+                            <div class="stat-box">
+                                <span class="stat-num" id="total-stat">0</span>
+                                <span class="stat-lbl">Tracked</span>
+                            </div>
+                            <div class="stat-box completed-theme">
+                                <span class="stat-num" id="done-stat">0</span>
+                                <span class="stat-lbl">Executed</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div> </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

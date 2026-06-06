@@ -1,0 +1,321 @@
+/* ==========================================================================
+   HABITFLOW MASTER ARCHITECTURE VARIABLE SCHEME
+   ========================================================================== */
+:root {
+    --bg-app: #090d16;
+    --bg-surface: #111827;
+    --bg-surface-elevated: #1f2937;
+    --border-subtle: rgba(255, 255, 255, 0.05);
+    
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    
+    --accent-violet: #8b5cf6;
+    --accent-emerald: #10b981;
+    --grad-violet: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   CORE INTERFACE WRAPPER LAYOUT
+   ========================================================================== */
+.dashboard-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Slim Premium Sidebar Navigation Panel */
+.sidebar {
+    width: 80px;
+    background-color: var(--bg-surface);
+    border-right: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0;
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
+}
+
+.sidebar-brand {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 60px;
+}
+.sidebar-brand b { color: var(--accent-violet); }
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.sb-link {
+    color: var(--text-secondary);
+    font-size: 20px;
+    transition: color 0.2s;
+}
+.sb-link:hover, .sb-link.active { color: var(--accent-violet); }
+
+/* Main Content Window Frame Offset */
+.main-content {
+    flex-grow: 1;
+    margin-left: 80px;
+    padding: 50px 60px;
+}
+
+/* Content Header Formatting */
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 45px;
+}
+
+.header-titles h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 6px;
+}
+
+.header-titles p { color: var(--text-secondary); font-size: 0.95rem; }
+
+.date-badge {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   DASHBOARD GRID ENGINE (ASYMMETRIC SPLIT)
+   ========================================================================== */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+/* Input Form Box Component */
+.input-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 16px;
+    border-radius: 14px;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+.input-card input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 15px;
+    flex-grow: 1;
+    padding-left: 10px;
+}
+
+.input-card input::placeholder { color: #4b5563; }
+
+.add-btn {
+    background: var(--grad-violet);
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.add-btn:hover { transform: translateY(-1px); }
+
+.container-subtitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   DYNAMIC HABIT TRACKER ITEM CARDS
+   ========================================================================== */
+.habits-list { display: flex; flex-direction: column; gap: 14px; }
+
+.habit-item {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 20px 24px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.habit-item:hover {
+    border-color: rgba(139, 92, 246, 0.2);
+    background-color: rgba(255, 255, 255, 0.01);
+}
+
+.habit-left { display: flex; align-items: center; gap: 16px; }
+
+/* Custom Action Execution Checkboxes */
+.check-trigger {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid var(--bg-surface-elevated);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: transparent;
+    transition: all 0.2s;
+}
+
+.habit-item:hover .check-trigger { border-color: var(--accent-violet); }
+
+.habit-title { font-size: 15px; font-weight: 600; color: var(--text-primary); transition: all 0.2s; }
+
+/* Executed/Completed Visual State Classes */
+.habit-item.is-done {
+    border-color: rgba(16, 185, 129, 0.15);
+    background-color: rgba(16, 185, 129, 0.02);
+}
+.habit-item.is-done .check-trigger {
+    background-color: var(--accent-emerald);
+    border-color: var(--accent-emerald);
+    color: #fff;
+}
+.habit-item.is-done .habit-title {
+    color: var(--text-secondary);
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+/* Delete Action Component Button */
+.delete-habit-btn {
+    background: transparent;
+    border: none;
+    color: #4b5563;
+    cursor: pointer;
+    font-size: 14px;
+    transition: color 0.2s;
+    padding: 4px;
+}
+.delete-habit-btn:hover { color: #ef4444; }
+
+/* ==========================================================================
+   STICKY ANALYTICS DATA WINDOWS PANEL
+   ========================================================================== */
+.analytics-sticky-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: var(--pad-card, 30px);
+    position: sticky;
+    top: 50px;
+}
+
+.card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+}
+
+/* Concentric Conic Progress Bar Mock */
+.progress-radial-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.radial-outer {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    /* Default baseline fallback track state color */
+    background: conic-gradient(var(--accent-violet) 0%, var(--bg-surface-elevated) 0%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    transition: background 0.4s ease;
+}
+
+.radial-inner {
+    width: 112px;
+    height: 112px;
+    background-color: var(--bg-surface);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#completion-percentage { font-size: 24px; font-weight: 800; color: #fff; }
+.radial-label { font-size: 13px; color: var(--text-secondary); font-weight: 500; }
+
+/* Structural Data Counters Breakdown */
+.metrics-row {
+    display: flex;
+    gap: 16px;
+}
+
+.stat-box {
+    flex-grow: 1;
+    background-color: var(--bg-surface-elevated);
+    padding: 16px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.02);
+}
+
+.stat-num { display: block; font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 2px;}
+.stat-lbl { font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase;}
+
+.completed-theme .stat-num { color: var(--accent-emerald); }
+
+/* ==========================================================================
+   SYSTEM DESIGN RESPONSIVE CALIBRATION BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .dashboard-grid { grid-template-columns: 1fr; gap: 30px; }
+    .main-content { padding: 40px var(--pad-card, 30px); }
+    .analytics-sticky-card { position: static; }
+}
+
+@media (max-width: 640px) {
+    .sidebar { display: none; }
+    .main-content { margin-left: 0; padding: 30px 20px; }
+    .content-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+}
