@@ -139,17 +139,34 @@ body {
 .input-card input::placeholder { color: #4b5563; }
 
 .add-btn {
-    background: var(--grad-violet);
-    color: #fff;
+    background: #ffffff;
+    color: #090d16;
     border: none;
-    padding: 10px 24px;
-    border-radius: 8px;
-    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 600;
     font-size: 13px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: background-color 0.2s, transform 0.15s;
 }
-.add-btn:hover { transform: translateY(-1px); }
+
+.add-btn:hover {
+    background-color: #f3f4f6;
+    transform: none;
+}
+
+.delete-habit-btn {
+    background: transparent;
+    border: none;
+    color: #4b5563;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    opacity: 0; /* Hidden by default for an uncluttered layout */
+    transition: opacity 0.2s ease, color 0.2s ease;
+}
 
 .container-subtitle {
     font-size: 1.1rem;
@@ -176,9 +193,13 @@ body {
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.habit-item:hover {
+.habit-item:hover .delete-habit-btn {
     border-color: rgba(139, 92, 246, 0.2);
     background-color: rgba(255, 255, 255, 0.01);
+}
+
+.delete-habit-btn:hover {
+    color: #ef4444;
 }
 
 .habit-left { display: flex; align-items: center; gap: 16px; }
